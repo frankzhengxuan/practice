@@ -1,0 +1,25 @@
+a = [1, 2, 10, 45, 5, 6, 56, 32]
+b = []
+plt.subplot(2,1,1)
+plt.plot(a)
+allData = []
+
+def mean(data, N=3):
+
+    if len(allData) < N-1:
+        allData.append(data)
+        return data
+    else:
+        # 表示在最后一个数据之前插入数据
+        allData.insert(-1, data)
+        mean = np.sum(allData)/len(allData)
+        # 去除第一个数值点
+        allData.pop(0)
+        return mean
+
+for i in range(len(a)):
+    b.append(mean(a[i]))
+
+plt.subplot(2,1,2)
+plt.plot(b)
+plt.show()
